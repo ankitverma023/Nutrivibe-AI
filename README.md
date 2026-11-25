@@ -316,6 +316,65 @@ npm run dev
 
 ---
 
+## 👥 Contributors
+
+We welcome contributions from the community! This project has been built with the efforts of the following contributors:
+
+| Contributor | Role | GitHub | Contributions |
+| :--- | :--- | :--- | :--- |
+| **Ankit Verma** | Project Lead & Full-Stack Developer | [@ankitverma023](https://github.com/ankitverma023) | Architecture design, AI microservice (FastAPI, computer vision), Express API gateway, MongoDB schemas, clinical algorithms (Mifflin-St Jeor, ICMR protocols, risk prediction), diet recommendation engine, health risk predictor |
+| **Vishal Mandal** | Frontend & UI/UX Engineer | [@vishalmandal713](https://github.com/vishalmandal713) | React 19 frontend (Vite), glassmorphic UI components, WebRTC camera integration, responsive dark/light themes, SVG charts (Recharts), Nutrition Studio, Activity & Progress pages, AI Scanner modal, portion scaler, sidebar navigation, theme switching, CI/CD pipeline |
+| **Dhruv Gupta** | Backend & Database Engineer | [@CODER-1905-UMANG](https://github.com/CODER-1905-UMANG) | Express.js REST API, JWT authentication, meal & hydration controllers, analytics aggregation, MongoDB compound indexes, API documentation, deployment configuration |
+
+---
+
+### 🤝 How to Contribute
+
+We love contributions! Here's how you can help:
+
+1. **Fork the repository** and create your branch from `main`
+2. **Run the tests** (if available) and ensure the linter passes
+3. **Make your changes** with clear, descriptive commit messages
+4. **Open a Pull Request** with a detailed description of your changes
+
+#### Areas where we'd love help:
+- 🌐 **Internationalization (i18n)** — Add support for Hindi, Tamil, Bengali, etc.
+- 📱 **PWA Support** — Service worker for offline meal logging
+- 🧪 **Test Coverage** — Unit tests (Vitest/Jest) and E2E tests (Cypress/Playwright)
+- ♿ **Accessibility** — ARIA labels, focus management, screen reader testing
+- 📊 **Charts & Visualizations** — Additional chart types, export to PDF/CSV
+- 🤖 **AI Model Expansion** — More food classes, Gemini Vision integration
+- 🏥 **Clinical Protocols** — Additional medical conditions (CKD, Gout, etc.)
+
+#### Code Style Guidelines:
+- **Frontend:** ESLint + Prettier (configured), TypeScript preferred for new files
+- **Backend:** ESLint + Prettier, JSDoc for public functions
+- **AI Service:** Black formatter, type hints (Pydantic), docstrings
+- **Commits:** Conventional Commits (`feat:`, `fix:`, `docs:`, `refactor:`, `test:`, `chore:`)
+
+---
+
 ## 🛡️ License & Acknowledgements
+
+- **License:** MIT License — see [LICENSE](LICENSE) for details.
 - Food composition standards synthesized from the **ICMR - National Institute of Nutrition (IFCT 2017)** and the **United States Department of Agriculture (USDA FoodData Central)**.
-- Designed and built with ❤️ by **Ankit** for modern, intelligent, and proactive healthcare.
+- Clinical guidelines referenced from **ICMR Maternal Nutrition Guidelines**, **ADA Standards of Care**, **AHA DASH Protocol**.
+- Designed and built with ❤️ by the **NutriVibe Team** for modern, intelligent, and proactive healthcare.
+
+---
+
+<p align="center">
+  <strong>NutriVibe — Eat Smart. Live Better. 🥗🤖⚡</strong>
+</p>
+
+<p align="center">
+  <a href="https://github.com/ankitverma023/Nutrivibe-AI/stargazers">
+    <img src="https://img.shields.io/github/stars/ankitverma023/Nutrivibe-AI?style=social" alt="GitHub Stars">
+  </a>
+  <a href="https://github.com/ankitverma023/Nutrivibe-AI/network/members">
+    <img src="https://img.shields.io/github/forks/ankitverma023/Nutrivibe-AI?style=social" alt="GitHub Forks">
+  </a>
+  <a href="https://github.com/ankitverma023/Nutrivibe-AI/blob/main/LICENSE">
+    <img src="https://img.shields.io/github/license/ankitverma023/Nutrivibe-AI" alt="License">
+  </a>
+</p>
