@@ -73,6 +73,64 @@ const userSchema = new mongoose.Schema(
       ],
       default: 'maintenance',
     },
+
+    // Custom nutrition targets (optional overrides)
+    customCalorieGoal: {
+      type: Number,
+      min: 500,
+      max: 10000,
+      default: null,
+    },
+
+    customProteinGoal: {
+      type: Number,
+      min: 0,
+      max: 500,
+      default: null,
+    },
+
+    customCarbsGoal: {
+      type: Number,
+      min: 0,
+      max: 1000,
+      default: null,
+    },
+
+    customFatGoal: {
+      type: Number,
+      min: 0,
+      max: 500,
+      default: null,
+    },
+
+    customWaterGoal: {
+      type: Number,
+      min: 1,
+      max: 30,
+      default: 8,
+    },
+
+    dietaryPreference: {
+      type: String,
+      enum: ['standard', 'vegetarian', 'vegan', 'keto', 'high_protein'],
+      default: 'standard',
+    },
+
+    // Medical Condition & Life Stage
+    medicalCondition: {
+      type: String,
+      enum: [
+        'none',
+        'pregnancy',
+        'lactation',
+        'diabetes',
+        'hypertension',
+        'pcos',
+        'cholesterol',
+        'thyroid',
+      ],
+      default: 'none',
+    },
   },
   {
     timestamps: true,

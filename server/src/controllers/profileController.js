@@ -4,9 +4,10 @@ import User from '../models/User.js';
 // Get the logged-in user's profile
 export const getProfile = async (req, res, next) => {
   try {
-    const user = await User.findById(req.user.id).select(
-      'name email age gender height weight activityLevel fitnessGoal createdAt'
-    );
+    const selectFields =
+      'name email age gender height weight activityLevel fitnessGoal customCalorieGoal customProteinGoal customCarbsGoal customFatGoal customWaterGoal dietaryPreference medicalCondition createdAt';
+
+    const user = await User.findById(req.user.id).select(selectFields);
 
     if (!user) {
       return res.status(404).json({
@@ -36,6 +37,13 @@ export const updateProfile = async (req, res, next) => {
       'weight',
       'activityLevel',
       'fitnessGoal',
+      'customCalorieGoal',
+      'customProteinGoal',
+      'customCarbsGoal',
+      'customFatGoal',
+      'customWaterGoal',
+      'dietaryPreference',
+      'medicalCondition',
     ];
 
     const updates = {};
@@ -53,6 +61,9 @@ export const updateProfile = async (req, res, next) => {
       });
     }
 
+    const selectFields =
+      'name email age gender height weight activityLevel fitnessGoal customCalorieGoal customProteinGoal customCarbsGoal customFatGoal customWaterGoal dietaryPreference medicalCondition createdAt';
+
     const user = await User.findByIdAndUpdate(
       req.user.id,
       { $set: updates },
@@ -60,9 +71,7 @@ export const updateProfile = async (req, res, next) => {
         new: true,
         runValidators: true,
       }
-    ).select(
-      'name email age gender height weight activityLevel fitnessGoal createdAt'
-    );
+    ).select(selectFields);
 
     if (!user) {
       return res.status(404).json({

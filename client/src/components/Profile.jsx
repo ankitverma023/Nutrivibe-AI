@@ -9,6 +9,7 @@ import {
   Flame,
   Zap,
   TrendingUp,
+  Heart,
 } from 'lucide-react';
 
 import {
@@ -31,6 +32,7 @@ const initialForm = {
   weight: '',
   activityLevel: 'moderate',
   fitnessGoal: 'maintenance',
+  medicalCondition: 'none',
 };
 
 function Profile() {
@@ -55,6 +57,7 @@ function Profile() {
             age: data?.age ?? '',
             height: data?.height ?? '',
             weight: data?.weight ?? '',
+            medicalCondition: data?.medicalCondition || 'none',
           });
         }
       } catch (err) {
@@ -199,6 +202,7 @@ function Profile() {
         weight,
         activityLevel: profile.activityLevel,
         fitnessGoal: profile.fitnessGoal,
+        medicalCondition: profile.medicalCondition || 'none',
       };
 
       const updatedProfile = await updateProfile(payload);
@@ -449,6 +453,55 @@ function Profile() {
               </select>
             </label>
           </div>
+        </section>
+
+        {/* Medical Condition & Life Stage */}
+        <section className="profile-section">
+          <h2>
+            <Heart size={20} />
+            Medical Health Condition & Life Stage
+          </h2>
+          <p className="profile-subtext" style={{ fontSize: '0.875rem', color: 'var(--text-secondary)', marginBottom: '1rem' }}>
+            Personalizes your dietary guidelines, ICMR calorie calculations, and safe workout activities.
+          </p>
+
+          <div className="profile-grid">
+            <label style={{ gridColumn: '1 / -1' }}>
+              Condition / Life Stage
+              <select
+                name="medicalCondition"
+                value={profile.medicalCondition || 'none'}
+                onChange={handleChange}
+              >
+                <option value="none">None / General Healthy Maintenance</option>
+                <option value="pregnancy">🤰 Pregnancy (Trimester 1, 2, or 3)</option>
+                <option value="lactation">🤱 Lactation / Breastfeeding Mother</option>
+                <option value="diabetes">🩸 Diabetes / Prediabetes (Low Glycemic Focus)</option>
+                <option value="hypertension">🫀 Hypertension / High Blood Pressure (DASH Protocol)</option>
+                <option value="pcos">🌸 PCOS / PCOD (Hormonal Balance & Low GI)</option>
+                <option value="cholesterol">🫀 High Cholesterol / Lipid Management</option>
+                <option value="thyroid">🦋 Thyroid / Hypothyroidism Care</option>
+              </select>
+            </label>
+          </div>
+
+          {profile.medicalCondition === 'pregnancy' && (
+            <div style={{ marginTop: '0.75rem', padding: '0.85rem 1rem', background: '#ecfdf5', border: '1px solid #a7f3d0', borderRadius: '10px', color: '#065f46', fontSize: '0.875rem' }}>
+              <strong>🤰 Pregnancy Protocol Active:</strong> Daily target adjusted by +350 kcal/day (ICMR standards). Focus on Folate (600mcg), Elemental Iron, Calcium & safe prenatal yoga/walking.
+            </div>
+          )}
+
+          {profile.medicalCondition === 'lactation' && (
+            <div style={{ marginTop: '0.75rem', padding: '0.85rem 1rem', background: '#eff6ff', border: '1px solid #bfdbfe', borderRadius: '10px', color: '#1e40af', fontSize: '0.875rem' }}>
+              <strong>🤱 Lactation Protocol Active:</strong> Daily energy requirement adjusted by +500 kcal/day for breast milk synthesis, plus increased hydration targets (12 glasses/day).
+            </div>
+          )}
+
+          {profile.medicalCondition === 'diabetes' && (
+            <div style={{ marginTop: '0.75rem', padding: '0.85rem 1rem', background: '#fffbeb', border: '1px solid #fde68a', borderRadius: '10px', color: '#92400e', fontSize: '0.875rem' }}>
+              <strong>🩸 Diabetes Care Active:</strong> Recommendations prioritize low-GI complex carbs, high soluble fiber (&gt;35g), and 15-min post-meal walks to stabilize blood glucose.
+            </div>
+          )}
         </section>
 
         {/* Daily Calorie Requirements */}

@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 const API_URL =
-  `${import.meta.env.VITE_API_URL || 'http://localhost:5000/api'}/meals`;
+  `${import.meta.env.VITE_API_URL || 'http://localhost:5001/api'}/meals`;
 
 // Automatically attach the JWT token to every meal request
 const mealApi = axios.create();

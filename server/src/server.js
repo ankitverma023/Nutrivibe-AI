@@ -3,7 +3,7 @@ import 'dotenv/config';
 import app from './app.js';
 import mongoose from 'mongoose';
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5001;
 
 async function startServer() {
   try {

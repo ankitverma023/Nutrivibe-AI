@@ -26,15 +26,26 @@ export async function createMeal(req, res, next) {
       });
     }
 
+    // Safely normalize category
+    let cleanCategory = 'Other';
+    if (category) {
+      const c = String(category).trim().toLowerCase();
+      if (c.includes('break')) cleanCategory = 'Breakfast';
+      else if (c.includes('lunch')) cleanCategory = 'Lunch';
+      else if (c.includes('din')) cleanCategory = 'Dinner';
+      else if (c.includes('snack')) cleanCategory = 'Snack';
+      else cleanCategory = 'Other';
+    }
+
     const meal = await Meal.create({
       user: req.user.id,
-      name,
-      category,
-      calories: Number(calories),
-      protein: protein ?? 0,
-      carbs: carbs ?? 0,
-      fat: fat ?? 0,
-      ...(consumedAt ? { consumedAt } : {}),
+      name: name.trim(),
+      category: cleanCategory,
+      calories: Math.max(0, Math.round(Number(calories))),
+      protein: Math.max(0, Math.round(Number(protein) || 0)),
+      carbs: Math.max(0, Math.round(Number(carbs) || 0)),
+      fat: Math.max(0, Math.round(Number(fat) || 0)),
+      consumedAt: consumedAt ? new Date(consumedAt) : new Date(),
     });
 
     return res.status(201).json({

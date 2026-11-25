@@ -13,6 +13,17 @@ const GOAL_ADJUSTMENTS = {
   weight_gain: 300,
 };
 
+const CONDITION_ADJUSTMENTS = {
+  pregnancy: 350,   // ICMR/NIN: +350 kcal/day in pregnancy for fetal & placental growth
+  lactation: 500,   // ICMR/NIN: +500 kcal/day during lactation for breastmilk production
+  diabetes: -100,   // Gentle deficit or weight management
+  hypertension: 0,
+  pcos: -150,       // Insulin resistance calorie optimization
+  cholesterol: 0,
+  thyroid: -150,    // Compensate for lowered metabolic rate in hypothyroidism
+  none: 0,
+};
+
 /**
  * Calculate estimated daily calorie requirements.
  *
@@ -73,6 +84,9 @@ export function calculateDailyCalories(profile) {
     return null;
   }
 
+  const conditionKey = (profile.medicalCondition || 'none').toLowerCase();
+  const conditionAdjustment = CONDITION_ADJUSTMENTS[conditionKey] || 0;
+
   const estimates = coefficients.map((coefficient) => {
     const bmr =
       10 * weight +
@@ -81,12 +95,13 @@ export function calculateDailyCalories(profile) {
       coefficient;
 
     const tdee = bmr * activityFactor;
-    const target = tdee + goalAdjustment;
+    const target = tdee + goalAdjustment + conditionAdjustment;
 
     return {
       bmr: Math.round(bmr),
       tdee: Math.round(tdee),
       target: Math.round(target),
+      conditionAdjustment,
     };
   });
 

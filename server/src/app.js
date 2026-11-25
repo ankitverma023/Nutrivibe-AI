@@ -5,6 +5,9 @@ import cors from 'cors';
 import mealRoutes from './routes/mealRoutes.js';
 import authRoutes from './routes/authRoutes.js';
 import profileRoutes from './routes/profileRoutes.js';
+import waterRoutes from './routes/waterRoutes.js';
+import analyticsRoutes from './routes/analyticsRoutes.js';
+import aiRoutes from './routes/aiRoutes.js';
 
 const app = express();
 
@@ -15,8 +18,8 @@ app.use(
   })
 );
 
-// Parse incoming JSON requests
-app.use(express.json({ limit: '1mb' }));
+// Parse incoming JSON requests (10mb to handle food photo data)
+app.use(express.json({ limit: '10mb' }));
 
 // Health check route
 app.get('/api/health', (req, res) => {
@@ -35,6 +38,15 @@ app.use('/api/meals', mealRoutes);
 
 // Profile routes
 app.use('/api/profile', profileRoutes);
+
+// Water tracker routes
+app.use('/api/water', waterRoutes);
+
+// Historical analytics routes
+app.use('/api/analytics', analyticsRoutes);
+
+// AI Food recognition & recommendation routes
+app.use('/api/ai', aiRoutes);
 
 // 404 handler
 app.use((req, res) => {
