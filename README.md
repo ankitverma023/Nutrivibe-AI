@@ -2,35 +2,41 @@
 
 **Enterprise-Grade AI-Powered Nutrition Intelligence, Diet Planning & Clinical Health Risk Prediction Platform**
 
-NutriVibe is a full-stack preventive healthcare and nutrition platform built on an asynchronous **MERN + Python FastAPI** decoupled microservices architecture. Moving beyond legacy manual calorie counters, NutriVibe combines real-time **WebRTC computer vision food recognition**, **ICMR-NIN & USDA nutritional tables**, **instant photo auto-meal logging**, **personalized daily diet planning**, and **clinical health risk predictions (Type-2 Diabetes, Cardio/Fat, Hypertension, BMI)**.
+NutriVibe is a full-stack preventive healthcare and nutrition platform built on an asynchronous **MERN + Python FastAPI** decoupled microservices architecture. Moving beyond legacy manual calorie counters, NutriVibe combines real-time **WebRTC computer vision food recognition**, **ICMR-NIN & USDA nutritional tables**, **interactive portion scaling (plates & grams)**, **personalized medical health protocols (Pregnancy, Lactation, Diabetes, PCOS)**, and **clinical metabolic risk predictions (Type-2 Diabetes, Cardio/Fat, Hypertension, BMI)**.
 
 ---
 
 ## 🌟 Key Highlights & Features
 
-### 1. 📸 Photo Scan & Food Recognition with Portion Control (Plates & Grams)
-- **Multi-Device Live Camera (WebRTC) & File Upload:** Access live webcams on MacBooks/laptops or rear/front cameras on iOS/Android smartphones with clean aspect-ratio viewfinder.
-- **Portion Size Controls (Optional):**
+### 1. 📸 Intelligent Food Vision & Nutrition Estimation (No Random Fallbacks)
+- **Multi-Device Live Camera (WebRTC) & File Upload:** Seamlessly access live webcams on MacBooks/laptops or rear/front cameras on iOS/Android smartphones with clean aspect-ratio viewfinder.
+- **Center-Weighted HSV & Texture Analysis:**
+  - Extracts the center 65% of the food dish, eliminating plate rims, bowls, and dark tablecloth backgrounds.
+  - Computes golden/saffron, green, crimson/curry, white, and wheat hue histograms.
+  - Applies high-frequency edge texture filters (Laplacian) to accurately separate textured grain dishes (*Chicken Biryani, Veg Pulao, Poha*) from smooth liquid gravies (*Dal Tadka, Dal Makhani*) and flat discs (*Whole Wheat Roti, Paratha*).
+- **Interactive Portion Size Controls (Optional):**
   - **Preset Plate Servings:** Quick-select `0.5 Plate`, `1 Plate (Default)`, `1.5 Plates`, or `2 Plates`.
   - **Custom Grams Input (Optional):** Enter exact measured weight (e.g., `150g`, `200g`, `350g`).
-  - **Live Dynamic Recalculation:** Calories, total fat, protein, and carbs scale instantly as portion size changes!
+  - **Live Dynamic Recalculation:** Calories, total fat, protein, and carbs scale instantly as portion size or grams change!
+- **User-Controlled Review & Confirmation:**
+  - Scanned meals are displayed for visual verification first; no unwanted or misidentified meals are silently force-saved.
+  - Users can adjust portion sizes, switch categories (Breakfast, Lunch, Dinner, Snack), or pick from 1-tap alternative staples before clicking **"Add Meal to Tracker"**.
 - **Robust Error & Upload Failure Notification:**
   - Clear red banner alert if photo upload fails or file is invalid/corrupted (`Image upload / scan failed`).
-  - Caution notice when visual match is uncertain or low confidence (`<85%`).
-- **Quick-Alternative Dish Switcher:** If the AI matches an approximate dish, 1-click chips let the user switch to their actual meal (e.g. *Dal Tadka, Paneer Butter Masala, Chicken Biryani, Salad, Boiled Eggs, Oats, Idli Sambhar, Rajma Chawal*) without scanning again.
-- **Instant Database Persistence:** Save directly to MongoDB Atlas with normalized categories and full transactional safety.
+  - Caution notice when visual match is approximate or low confidence (`<85%`).
+- **Quick-Alternative Dish Switcher:** If the AI matches an approximate dish, 1-click chips let the user switch to their actual meal (e.g. *Chicken Biryani, Dal Tadka, Paneer Butter Masala, Roti, Garden Salad, Boiled Eggs, Oats, Idli Sambhar, Rajma Chawal*) without scanning again.
 
 ---
 
-### 2. 🤰 Medical Health & Life Stages Personalization
-- **Unique Recommendations Per User:** Diet plans, calorie calculations, and activities are tailored to the user's specific clinical health profile rather than generic advice.
+### 2. 🤰 Personalized Medical Health & Life Stages
+Rather than giving generic recommendations, NutriVibe customizes diet plans, caloric targets, and exercise safety for each user's unique physiological condition:
 - **Supported Medical Conditions & Life Stages:**
-  - 🤰 **Pregnancy (1st, 2nd, 3rd Trimester):** ICMR-NIN +350 kcal/day allowance, Folate (600mcg), Elemental Iron (27mg), Calcium (1200mg), DHA; safe prenatal yoga & walking; strictly avoids raw papaya, unpasteurized milk, crunches, and heavy deadlifts.
+  - 🤰 **Pregnancy (1st, 2nd, 3rd Trimester):** ICMR-NIN +350 kcal/day allowance, Folate (600mcg), Elemental Iron (27mg), Calcium (1200mg), DHA; safe prenatal yoga & gentle walking; strictly avoids raw papaya (latex/papain), unpasteurized dairy, abdominal crunches, and heavy deadlifts.
   - 🤱 **Lactation / Nursing Mothers:** +500 kcal/day allowance, galactagogues (methi, saunf, oats), 12-14 glasses hydration.
   - 🩸 **Type-2 / Gestational Diabetes:** Low Glycemic Index (<55), >35g soluble fiber, 15-min post-meal walking to stimulate GLUT-4 insulin-independent glucose clearance.
   - 🫀 **Hypertension (DASH Protocol):** Sodium restriction (<1500mg), potassium-rich foods (tender coconut, bananas), aerobic walking, avoidance of heavy Valsalva maneuvers.
-  - 🌸 **PCOS / PCOD:** Seed cycling, spearmint tea, anti-inflammatory whole foods, progressive resistance training.
-  - 🦋 **Thyroid Care:** Iodine/selenium-rich foods, cooked cruciferous vegetables, moderate aerobic movement.
+  - 🌸 **PCOS / PCOD:** Seed cycling (flax, pumpkin), spearmint tea, anti-inflammatory whole foods, progressive resistance training.
+  - 🦋 **Thyroid Care (Hypothyroidism):** Iodine/selenium-rich foods, cooked cruciferous vegetables, moderate aerobic movement.
 - **Condition-Specific Safe Physical Activity Guidance:** Dedicated safe workout logger and contraindications warning list in the Activity module.
 - **1-Click Clinical Meal Logging:** Instantly log condition-specific meals directly into the daily tracker.
 
@@ -48,7 +54,7 @@ NutriVibe is a full-stack preventive healthcare and nutrition platform built on 
 
 ---
 
-### 3. 🩺 Clinical Health Risk Prediction Engine
+### 4. 🩺 Clinical Health Risk Prediction Engine
 - **Metabolic Vitality Score (0 to 100):** Visual health vitality score with dynamic color-coded indicators.
 - **Biometrics & BMI Analysis:** Computes BMI ($BMI = \frac{\text{weight}}{\text{height}^2}$), classifies metabolic status (*Underweight, Normal, Overweight, Obese*), and determines the user's ideal weight range.
 - **5 Multi-Factor Clinical Disease Risk Assessments:**
@@ -62,28 +68,86 @@ NutriVibe is a full-stack preventive healthcare and nutrition platform built on 
 
 ---
 
-### 4. 🍽️ Dedicated Nutrition Studio
-- **Diurnal Meal Categorization:** Separate workspaces for **Breakfast**, **Lunch**, **Dinner**, and **Snacks**.
+### 5. 🍽️ Dedicated Nutrition Studio
+- **Diurnal Meal Categorization:** Workspaces for **Breakfast**, **Lunch**, **Dinner**, and **Snacks**.
+- **Normalized Category Ingestion:** Robust Mongoose backend schema supporting standard enums with automatic alias normalization.
 - **Visual Macronutrient Bars:** Real-time tracking of calories, protein, carbs, and fat per category.
-- **Integrated Food Explorer:** Instant search across the 528+ item ICMR IFCT database with pre-calculated portion sizes.
+- **Integrated Food Explorer:** Instant search across the ICMR IFCT database with pre-calculated portion sizes.
 
 ---
 
-### 5. 💧 Persistent Hydration Tracker
+### 6. 💧 Persistent Hydration Tracker
 - **MongoDB Atlas Persistence:** Date-indexed storage with atomic upsert operations (`{ user: 1, date: 1 }`).
 - **Standard 250ml Multiplier:** Visual glass indicators with increment, decrement, and daily completion alerts.
 
 ---
 
-### 6. 📊 7-Day Longitudinal Consistency Analytics
+### 7. 📊 7-Day Longitudinal Consistency Analytics
 - **Responsive SVG Area Charts:** Real-time visualization of daily caloric adherence over a rolling 7-day window.
-- **Lifetime Macronutrient Distribution Donut:** Real-time ratio analysis of protein, carbohydrate, and lipid intake.
+- **Macronutrient Distribution Donut:** Real-time ratio analysis of protein, carbohydrate, and lipid intake.
 
 ---
 
-### 7. ⚡ AI Power Health Assistant & Dual-Theme UI
-- **Instant Health Score & Daily Power Hacks:** Multi-factor metabolic score with 3 contextual action items.
-- **Obsidian Dark Mode & Crisp Light Mode:** Instant theme switching powered by CSS custom properties and Glassmorphism design tokens.
+### 8. ⚡ Responsive Glassmorphic UI & Smooth Scrolling Sidebar
+- **Full Viewport Scroll Support:** Sidebar incorporates smooth `overflow-y: auto` with custom slim scrollbars, ensuring that the **AI Power Health Card**, **User Profile**, and **Logout** buttons are always accessible on all screen resolutions (1080p, 13" laptops, tablets).
+- **Instant Theme Switching:** Seamlessly toggle between Obsidian Dark Mode and Crisp Light Mode powered by CSS custom properties.
+
+---
+
+## 🔬 Dataset & Scientific Standards
+
+NutriVibe's nutritional calculations and clinical algorithms are derived from official government and clinical databases:
+
+1. **ICMR-NIN Indian Food Composition Tables (IFCT 2017):**
+   - Published by the **National Institute of Nutrition (NIN)**, Indian Council of Medical Research (ICMR), Ministry of Health & Family Welfare, Govt. of India.
+   - Provides laboratory-analyzed macro- and micronutrient values for authentic Indian recipes, cooking oils, dals, grains, and spice blends.
+2. **USDA FoodData Central:**
+   - Standard reference dataset from the **U.S. Department of Agriculture** for whole foods, poultry, fish, fruits, nuts, and global fitness staples.
+3. **Clinical Guidelines & Equations:**
+   - **Mifflin-St Jeor Equation (1990):** Clinical gold standard for Basal Metabolic Rate (BMR) and Total Daily Energy Expenditure (TDEE).
+   - **ICMR Maternal Nutrition Guidelines:** Trimester-specific caloric additions (+350 kcal) and micronutrient thresholds (Folate, Iron, Calcium).
+   - **American Diabetes Association (ADA) Standards of Care:** Low Glycemic Index (<55) and high soluble fiber benchmarks.
+   - **American Heart Association (AHA) DASH Protocol:** Sodium limitation (<1,500mg/day) and potassium adequacy (>3,500mg/day).
+
+---
+
+## 🖼️ Computer Vision & Food Recognition Pipeline
+
+Food photo recognition in NutriVibe operates via a multi-stage visual pipeline specifically engineered to handle complex regional dishes, varied lighting, and diverse tableware:
+
+```
+[ User Snaps / Uploads Photo ]
+            │
+            ▼
+[ Stage 1: Adaptive Center-Crop ] ──> Focuses on center 65% area to eliminate plates, bowls & background
+            │
+            ▼
+[ Stage 2: HSV Color Histogram ] ──> Evaluates Saffron/Golden, Crimson Gravy, Leafy Green, White, and Wheat hues
+            │
+            ▼
+[ Stage 3: Edge Texture Energy ] ──> Applies Laplacian kernel to measure surface texture (grain vs liquid vs dough)
+            │
+            ▼
+[ Stage 4: ICMR/USDA Database Match ] ──> Maps detected features to authentic nutritional data & returns top alternatives
+            │
+            ▼
+[ Stage 5: Interactive Portion Review ] ──> User chooses 0.5/1/1.5/2 Plates or Grams with real-time recalculation
+```
+
+### Visual Decision Matrix:
+| Food Class | Dominant HSV Hue | Edge Texture Energy | Texture Characteristics | Example Dish |
+| :--- | :--- | :--- | :--- | :--- |
+| **Biryani & Rice Dishes** | Golden / Saffron (10°-45°) | High ($\ge 20.0$) | Discrete grain edges, chicken pieces, fried onions | Chicken Biryani, Veg Pulao |
+| **Lentils & Smooth Dals** | Golden / Yellow (15°-45°) | Low ($< 18.0$) | Homogeneous liquid puree with low surface variance | Dal Tadka, Dal Makhani |
+| **Breads & Roti** | Wheat / Warm Brown (12°-32°) | Low ($< 22.0$) | Circular flat dough disc with uniform tone | Whole Wheat Roti, Paratha |
+| **Gravies & Curries** | Crimson / Deep Red ($< 12°$ or $> 240°$) | Moderate ($15.0 - 24.0$) | Thick tomato/onion emulsion with paneer or meat cubes | Paneer Butter Masala, Chicken Curry |
+| **Salads & Leafy Greens** | Green ($45° - 105°$) | Moderate to High | Fresh vegetable chunks and leafy foliage | Mediterranean Garden Salad, Palak Paneer |
+| **Steamed / Dairy Staples** | White / Translucent (Sat $\le 40$) | Variable | Smooth or granular white surface | Steamed Idli, Basmati Rice, Boiled Eggs |
+
+### 🚀 Future Roadmap: Multimodal Gemini Vision API Integration
+To expand from the current core regional staples to 10,000+ open-world global dishes, NutriVibe is engineered to seamlessly integrate with **Google Gemini 1.5 Flash Vision API**:
+- **Zero-Shot Open-World Recognition:** Deep visual understanding of rare regional street foods, multi-course thalis, and custom home recipes.
+- **Hybrid Nutritional Pairing:** Gemini Vision identifies the exact food item and visual portion estimate from the photograph, while NutriVibe's local ICMR IFCT database provides certified Indian caloric and macronutrient values.
 
 ---
 
@@ -94,6 +158,8 @@ NutriVibe is a full-stack preventive healthcare and nutrition platform built on 
                                   │           React 19 Frontend            │
                                   │      (Vite + Glassmorphism UI)         │
                                   │  • WebRTC Camera & Canvas Snapshot     │
+                                  │  • Portion Scaler (Plates / Grams)     │
+                                  │  • Medical Health Protocols View       │
                                   │  • Diet Plan & Health Risk Predictor   │
                                   │  • Obsidian Dark / Crisp Light Themes  │
                                   └───────────────────┬────────────────────┘
@@ -109,10 +175,11 @@ NutriVibe is a full-stack preventive healthcare and nutrition platform built on 
                         ┌───────────────────┴────┐        ┌──────┴─────────────────────┐
                         │     MongoDB Atlas      │        │    Python 3.11 FastAPI     │
                         │  (Users, Meals, Water, │        │     (AI Microservice)      │
-                        │   Compound B-Tree Idx) │        │  Port 8000 | CNN Vision    │
-                        └────────────────────────┘        │  IFCT 2017 & USDA Mapper   │
-                                                          │  Diet Plan & Risk Predictor│
-                                                          └────────────────────────────┘
+                        │   Compound B-Tree Idx) │        │  Port 8000 | Vision & HSV  │
+                        │                        │        │  Texture / Edge Analyzer   │
+                        │                        │        │  IFCT 2017 & USDA Mapper   │
+                        │                        │        │  Diet Plan & Risk Predictor│
+                        └────────────────────────┘        └────────────────────────────┘
 ```
 
 ---
@@ -124,7 +191,7 @@ nutrivibe-ai/
 ├── client/                               # React 19 + Vite Frontend SPA
 │   ├── src/
 │   │   ├── components/
-│   │   │   ├── AiScannerModal.jsx        # WebRTC camera capture, portion controls (plates/grams) & photo auto-add
+│   │   │   ├── AiScannerModal.jsx        # WebRTC camera capture, portion controls (plates/grams) & photo review
 │   │   │   ├── MedicalHealth.jsx         # Clinical protocols: Pregnancy, Lactation, Diabetes, PCOS & Safe Workouts
 │   │   │   ├── DietRecommendations.jsx   # 4-Meal personalized diet plans with 1-click add
 │   │   │   ├── HealthRiskPredictor.jsx   # Clinical risk predictor (Diabetes, Cardio, BMI)
@@ -141,21 +208,23 @@ nutrivibe-ai/
 │   │   │   ├── waterService.js           # Atomic hydration logging methods
 │   │   │   ├── analyticsService.js       # 7-day longitudinal query services
 │   │   │   └── authService.js            # JWT token & session management
+│   │   ├── utils/
+│   │   │   └── calorieCalculator.js      # Mifflin-St Jeor BMR & medical condition adjustment engine
 │   │   ├── App.jsx                       # Master Dashboard & view router
-│   │   └── App.css                       # Responsive Glassmorphic styles & CSS variables
+│   │   └── App.css                       # Responsive Glassmorphic styles & scrollable sidebar
 │   └── .env                              # VITE_API_URL=http://localhost:5001/api
 │
 ├── server/                               # Node.js + Express.js API Gateway
 │   ├── src/
 │   │   ├── controllers/
 │   │   │   ├── aiController.js           # Food scan, diet plans, health risk prediction
-│   │   │   ├── mealController.js         # Meal persistence & aggregation
+│   │   │   ├── mealController.js         # Meal persistence & normalized category ingestion
 │   │   │   ├── waterController.js        # Date-indexed atomic hydration upserts
 │   │   │   ├── analyticsController.js    # 7-day rolling window analytics engine
 │   │   │   ├── authController.js         # Bcrypt registration & JWT issuance
-│   │   │   └── profileController.js      # Biometrics & Mifflin-St Jeor engine
+│   │   │   └── profileController.js      # Biometrics, medical condition & profile engine
 │   │   ├── models/
-│   │   │   ├── User.js                   # User schema with biometric goals
+│   │   │   ├── User.js                   # User schema with biometric goals & medicalCondition enum
 │   │   │   ├── Meal.js                   # Meal document schema with compound indexes
 │   │   │   └── WaterLog.js               # Unique { user, date } hydration document
 │   │   ├── routes/                       # Express route definitions
@@ -165,13 +234,11 @@ nutrivibe-ai/
 │
 ├── ai-service/                           # Python 3.11 FastAPI Machine Learning Microservice
 │   ├── main.py                           # ASGI application with OpenAPI Swagger docs
-│   ├── food_classifier.py                # Visual color detection, filename matching & macros
+│   ├── food_classifier.py                # Center-crop HSV color & edge texture computer vision
 │   ├── nutrition_db.py                   # In-memory ICMR IFCT 2017 & USDA food dictionary
 │   ├── recommender.py                    # Diet plan builder & clinical health risk engine
 │   └── requirements.txt                  # fastapi, uvicorn, pydantic, pillow
 │
-├── NutriVibe_BTech_Major_Project_Report_MAIT.pdf   # 49-Page Academic Dissertation (MAIT CSE-AIML)
-├── NutriVibe_BTech_Major_Project_Report_MAIT.docx  # Editable Word Document for Dissertation
 └── README.md                             # Project Documentation
 ```
 
@@ -182,8 +249,8 @@ nutrivibe-ai/
 ### 1. AI & Computer Vision Service (`/api/ai`)
 | Method | Endpoint | Auth | Description |
 | :--- | :--- | :--- | :--- |
-| `POST` | `/api/ai/scan-food` | Yes | Parses base64 photo/query; returns food name, calories, fat, protein, carbs. |
-| `POST` | `/api/ai/diet-recommendations` | Yes | Generates personalized 4-meal daily schedule tailored to user goals. |
+| `POST` | `/api/ai/scan-food` | Yes | Parses base64 photo/query; returns food name, calories, fat, protein, carbs, and alternatives. |
+| `POST` | `/api/ai/diet-recommendations` | Yes | Generates personalized 4-meal daily schedule tailored to user goals and medical condition. |
 | `POST` | `/api/ai/health-risk-prediction` | Yes | Computes Diabetes, Cardio/Fat, Hypertension, BMI, and Vitality Score. |
 | `POST` | `/api/ai/insights` | Yes | Generates automated NutriVibe Health Score (0-100) and power recommendations. |
 
@@ -191,7 +258,7 @@ nutrivibe-ai/
 | Method | Endpoint | Auth | Description |
 | :--- | :--- | :--- | :--- |
 | `GET` | `/api/meals` | Yes | Retrieves user meals with optional date & category filters. |
-| `POST` | `/api/meals` | Yes | Creates and logs a meal (used by manual entry and AI photo auto-add). |
+| `POST` | `/api/meals` | Yes | Creates and logs a meal with normalized category handling. |
 | `DELETE`| `/api/meals/:id` | Yes | Permanently removes a meal record owned by the authenticated user. |
 
 ### 3. Persistent Hydration Tracker (`/api/water`)
@@ -246,16 +313,6 @@ npm install
 npm run dev
 # Client runs on http://localhost:5173
 ```
-
----
-
-## 🎓 Academic Dissertation Report (MAIT CSE-AIML)
-
-This repository includes the complete **B.Tech Major Project Dissertation Report** prepared for the **Department of Computer Science and Engineering (Artificial Intelligence and Machine Learning)** at **Maharaja Agrasen Institute of Technology (MAIT), Delhi**:
-
-- **PDF Document:** [`NutriVibe_BTech_Major_Project_Report_MAIT.pdf`](NutriVibe_BTech_Major_Project_Report_MAIT.pdf) (49 pages, print-accurate, ready for Navy Blue Hard Binding with Golden Engraved Print).
-- **Word Document:** [`NutriVibe_BTech_Major_Project_Report_MAIT.docx`](NutriVibe_BTech_Major_Project_Report_MAIT.docx) (Editable `.docx` format).
-- **Compliance:** 100% compliant with MAIT guidelines (A4 single-sided, Left 1.5", Times New Roman 12pt, non-table dot-leader TOC, IEEE references, complete SRS, DFDs, ER diagrams, test cases, and OpenAPI matrices).
 
 ---
 
